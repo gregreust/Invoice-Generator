@@ -5,10 +5,10 @@ import axios from 'axios'
 const AddStudent  = () => {
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
-    const [instrument, setInstrument] = useState(null);
-    const [teacher, setTeacher] = useState(null);
+    const [instrument, setInstrument] = useState();
+    const [teacher, setTeacher] = useState();
     const [lessonDay, setLessonDay] = useState("");
-    const [parentName, setParentName] = useState(null);
+    const [parentName, setParentName] = useState();
     // CHECK INPUT FORMAT FOR DJANGO ADRESSFIELD
     // const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
@@ -36,19 +36,19 @@ const AddStudent  = () => {
     return ( 
         <div className="addstudent-container">
             <form>
-                <input type="text" value={fName} onChange={setFName()} placeholder="First Name"/>
-                <input type="text" value={lName} onChange={setLName()} placeholder="Last Name"/>
-                <input type="select" value={instrument} onChange={setInstrument()} placeholder="Instrument">
+                <input type='text' value={fName} onChange={() => setFName()} placeholder='First Name'/>
+                <input type="text" value={lName} onChange={() => setLName()} placeholder="Last Name"/>
+                <select value={instrument} onChange={() => setInstrument()} placeholder="Instrument">
                     <option>Piano</option>
                     <option>Violin</option>
                     <option>Guitar</option>
                     <option>Cello</option>
                     <option>Drums</option>
                     <option>Flute</option>
-                </input>
+                </select>
                 {/* FOR LATER: MAKE TEACHER SELECT WITH DYNAMIC OPTIONS PULLED FROM DATABASE */}
-                {/* <input type="text" value={teacher} onChange={setTeacher()} placeholder="Teacher Name"/> */}
-                <input type="select" value={lessonDay} onChange={setLessonDay()} placeholder="Lesson Day">
+                <input type="text" value={teacher} onChange={() => setTeacher()} placeholder="Teacher Name"/> 
+                <select value={lessonDay} onChange={() => setLessonDay()} placeholder="Lesson Day">
                     <option>Monday</option>
                     <option>Tuesday</option>
                     <option>Wednesay</option>
@@ -56,12 +56,12 @@ const AddStudent  = () => {
                     <option>Friday</option>
                     <option>Saturday</option>
                     <option>Sunday</option>
-                </input>
-                <input type="text" value={parentName} onChange={setParentName()} placeholder="Parent Name"/>
-                <input type="tel" value={phone} onChange={setPhone()} placeholder="Phone Number"/>
-                <input type="email" value={email} onChange={setEmail()} placeholder="Email"/>
-                <button type="submit" onClick={(e) => handleSubmit(e)}>Add Student Info</button>
-            </form>
+                </select>
+                <input type="text" value={parentName} onChange={() => setParentName()} placeholder="Parent Name"/>
+                <input type="tel" value={phone} onChange={() => setPhone()} placeholder="Phone Number"/>
+                <input type="email" value={email} onChange={() => setEmail()} placeholder="Email"/>
+                <button type="submit" onClick={() => handleSubmit()}>Add Student Info</button> 
+            </form> 
 
         </div>
     );
