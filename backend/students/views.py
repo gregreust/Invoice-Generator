@@ -1,12 +1,10 @@
-from django.shortcuts import render
 from .models import Students
 from .serializers import StudentsSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import http404
 
-class StudentsList(APIview):
+class StudentsList(APIView):
 
     def get(self, request, format=None):
         students = Students.objects.all()
@@ -28,7 +26,7 @@ class StudentsDetail(APIView):
         try:
             return Students.objects.get(pk=pk)
         except Students.DoesNotExist:
-            raise Http404
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     def get(self, request, pk, format=None):
         student = self.get_object(pk)
